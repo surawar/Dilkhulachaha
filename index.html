@@ -3,488 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dilkhulas Chaha | Premium Franchise</title>
-    <!-- Prevent Google Translate on Brand Name globally -->
-    <meta name="google" content="notranslate">
-
-    <!-- 1. Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- 2. Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- 3. Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <!-- 4. Custom Configuration -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        orange: { 500: '#F97316', 600: '#EA580C' },
-                        dark: { 900: '#000000', 800: '#111111', 700: '#1a1a1a' },
-                        light: { 100: '#ffffff', 200: '#f3f4f6', 300: '#e5e7eb' }
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'Mukta', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Dilkhulas Chaha | दिलखुलास चहा - प्यायलाच हवा!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- MICRO-INTERACTIONS & DETAILS --- */
+        /* --- BRAND COLORS --- */
+        :root {
+            --brand-red: #ed1c24;
+            --brand-orange: #f7941d;
+            --brand-dark: #1a1a1a;
+            --light-bg: #fffdf5;
+            --text-color: #333;
+            --gradient: linear-gradient(135deg, var(--brand-red), var(--brand-orange));
+        }
+
+        /* --- GLOBAL RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Mukta', sans-serif; }
         html { scroll-behavior: smooth; }
-        ::selection { background-color: #F97316; color: white; }
-        .btn-press:active { transform: scale(0.95); }
-        .img-hover-zoom { overflow: hidden; }
-        .img-hover-zoom img { transition: transform 0.5s ease; }
-        .img-hover-zoom:hover img { transform: scale(1.1); }
-        body { transition: background-color 0.5s ease, color 0.5s ease; }
+        body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
 
-        /* Light Mode Overrides */
-        body.light-mode { background-color: #ffffff; color: #111111; }
-        body.light-mode .bg-zinc-900 { background-color: #f3f4f6 !important; border-color: #e5e7eb !important; }
-        body.light-mode .bg-black { background-color: #ffffff !important; }
-        body.light-mode .text-gray-300 { color: #4b5563 !important; }
-        body.light-mode .text-gray-400 { color: #6b7280 !important; }
-        body.light-mode nav { background-color: rgba(255,255,255,0.9); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        body.light-mode .card-border { border-color: #e5e7eb; }
-        body.light-mode iframe { border-color: #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        /* --- HEADER --- */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
 
-        /* --- LOADER --- */
-        #loader-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.5s ease-out; }
-        .light-mode #loader-wrapper { background-color: #fff; }
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
 
-        .kettle-svg { width: 80px; position: absolute; top: 0; left: 20px; fill: #e0e0e0; transform-origin: 100% 50%; animation: pourTea 2.5s infinite; z-index: 2; }
-        .light-mode .kettle-svg { fill: #333; }
-        .tea-stream { position: absolute; top: 45px; left: 98px; width: 4px; height: 0; background: #F97316; animation: streamFlow 2.5s infinite; z-index: 1; }
-        .cup-container { position: absolute; bottom: 20px; right: 40px; font-size: 50px; color: #333; z-index: 0; }
-        .cup-fill { position: absolute; bottom: 5px; left: 5px; width: 38px; height: 0; background: #F97316; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9; animation: fillCup 2.5s infinite; }
+        .logo img { height: 60px; }
 
-        @keyframes pourTea { 0%, 10% { transform: rotate(0deg); } 20%, 80% { transform: rotate(-25deg); } 90%, 100% { transform: rotate(0deg); } }
-        @keyframes streamFlow { 0%, 20% { height: 0; opacity: 0; } 25% { height: 60px; opacity: 1; } 80% { height: 60px; opacity: 1; } 85%, 100% { height: 0; opacity: 0; } }
-        @keyframes fillCup { 0%, 25% { height: 0; } 80% { height: 35px; } 90%, 100% { height: 35px; opacity: 0; } }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 700; font-size: 1.1rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand-red); }
 
-        @keyframes rise { 0% { bottom: -10%; transform: translateX(0) scale(1); opacity: 0; } 50% { opacity: 0.6; } 100% { bottom: 100%; transform: translateX(-20px) scale(1.5); opacity: 0; } }
-        .steam-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
-        .steam-one, .steam-two { position: absolute; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%); border-radius: 50%; filter: blur(20px); animation: rise 4s infinite linear; }
-        .steam-two { left: 60%; animation-delay: 2s; width: 80px; height: 80px; }
-        .light-mode .steam-one, .light-mode .steam-two { background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, transparent 70%); }
+        .mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--brand-red); }
 
-        .fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            /* Updated to use your 'hero-bg.jpg' */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
 
-        body { background-color: black; color: white; overflow-x: hidden; }
-        .brand-name { font-weight: 900; }
+        .hero h1 { font-size: 3.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 10px; }
+        .hero p { font-size: 1.5rem; margin-bottom: 30px; font-weight: 300; }
+
+        .btn {
+            background: var(--gradient);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(237, 28, 36, 0.4);
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-5px); }
+
+        /* --- SECTIONS COMMON --- */
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--brand-red);
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--brand-orange); margin: 10px auto 0;
+        }
+
+        /* --- ABOUT --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-img img { border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 5px solid #fff; }
+        .about-text h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--brand-dark); }
+        .stats { display: flex; gap: 20px; margin-top: 20px; }
+        .stat-box { background: #fff; padding: 15px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); flex: 1; }
+        .stat-box strong { display: block; font-size: 1.5rem; color: var(--brand-orange); }
+
+        /* --- MENU --- */
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .menu-card {
+            background: #fff; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-10px); }
+        .menu-card img { width: 100%; height: 200px; object-fit: cover; }
+        .menu-info { padding: 20px; text-align: center; }
+        .menu-info h3 { font-size: 1.4rem; color: var(--brand-red); margin-bottom: 10px; }
+        .menu-info p { font-size: 1rem; color: #666; }
+
+        /* --- FRANCHISE (USP) --- */
+        .franchise-section { background: var(--brand-dark); color: #fff; text-align: center; }
+        .usp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .usp-item i { font-size: 3rem; color: var(--brand-orange); margin-bottom: 20px; }
+        .usp-item h4 { font-size: 1.3rem; margin-bottom: 10px; }
+
+        /* --- CONTACT --- */
+        .contact-box {
+            background: #fff; padding: 40px; border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); text-align: center;
+            border-top: 5px solid var(--brand-red);
+        }
+        .contact-btn {
+            display: inline-block; background: #25d366; color: #fff;
+            padding: 10px 25px; border-radius: 50px; margin-top: 15px; font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer { background: #111; color: #aaa; text-align: center; padding: 20px; margin-top: 50px; }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 0 15px; }
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background: #fff; flex-direction: column; text-align: center;
+                padding: 20px 0; display: none; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .stats { flex-wrap: wrap; }
+        }
     </style>
 </head>
-<body class="selection:bg-orange-500 selection:text-white">
+<body>
 
-    <!-- === LOADER === -->
-    <div id="loader-wrapper">
-        <div class="loader-content relative w-[200px] h-[150px]">
-            <svg class="kettle-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <path d="M464,128H416L403.38,58.32C396.48,20.26,357,0,318.23,0H128C92.65,0,64,28.65,64,64V96H48c-26.51,0-48,21.49-48,48v64c0,26.51,21.49,48,48,48h16v32c0,88.22,71.78,160,160,160h64c88.22,0,160-71.78,160-160V128ZM96,208H48v-64h48V208Zm320,80c0,52.94-43.06,96-96,96H224c-52.94,0-96-43.06-96-96V64h190.23c9.35,0,18.06,5.74,21.82,14.39L352,108.48V288Z"/>
-            </svg>
-            <div class="tea-stream"></div>
-            <div class="cup-container">
-                <i class="fas fa-mug-hot" style="position: relative; z-index: 2;"></i>
-                <div class="cup-fill" style="z-index: 1;"></div>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#"><img src="logo.png" alt="Dilkhulas Chaha Logo"></a>
             </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">मुख्य पृष्ठ</a></li>
+                <li><a href="#about">आमच्याबद्दल</a></li>
+                <li><a href="#menu">मेनू</a></li>
+                <li><a href="#franchise">फ्रँचायझी</a></li>
+                <li><a href="#contact">संपर्क</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="content">
+            <h1>प्यायलाच हवा...!</h1>
+            <p>पुण्यातील एकमेव अस्सल कडक चविष्ट चहा</p>
+            <a href="#contact" class="btn">आजच भेट द्या</a>
         </div>
-        <p class="text-orange-500 font-bold mt-4 tracking-widest text-sm animate-pulse">PREPARING YOUR CHAI...</p>
-    </div>
+    </section>
 
-    <!-- NAVIGATION BAR -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-black/90 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-
-            <!-- LOGO SECTION -->
-            <a href="#" onclick="resetToHome(event)" class="flex items-center cursor-pointer group btn-press">
-                <img id="nav-logo" src="logo.png" alt="Dilkhulas Chaha" class="h-16 md:h-20 object-contain drop-shadow-lg transition-transform group-hover:scale-105">
-            </a>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex gap-8 items-center font-medium">
-                <button onclick="switchTab('brand')" id="btn-brand" class="text-orange-500 border-b-2 border-orange-500 transition-colors hover:text-orange-400 btn-press">
-                    आमची ओळख (Brand)
-                </button>
-                <button onclick="switchTab('franchise')" id="btn-franchise" class="text-gray-300 transition-colors hover:text-orange-400 btn-press">
-                    फ्रँचायजी (Franchise)
-                </button>
-
-                <a href="#contact" class="bg-gradient-to-r from-orange-600 to-red-600 px-6 py-2 rounded-full font-bold hover:shadow-[0_0_20px_rgba(234,88,12,0.5)] transition-all transform hover:-translate-y-1 text-white no-underline btn-press">
-                    संपर्क करा
-                </a>
-
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-all btn-press border border-zinc-700">
-                    <i id="theme-icon" class="fas fa-sun text-yellow-400 text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Menu & Theme Icons -->
-            <div class="flex items-center gap-4 md:hidden">
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center border border-zinc-700">
-                    <i id="theme-icon-mobile" class="fas fa-sun text-yellow-400"></i>
-                </button>
-                <button class="text-white text-2xl" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 p-4 flex-col gap-4 shadow-2xl">
-            <button onclick="switchTab('brand'); toggleMobileMenu()" class="text-left py-2 border-b border-zinc-800 text-white">आमची ओळख</button>
-            <button onclick="switchTab('franchise'); toggleMobileMenu()" class="text-left py-2 border-b border-zinc-800 text-orange-400 font-bold">फ्रँचायजी संधी</button>
-            <a href="#contact" onclick="toggleMobileMenu()" class="bg-orange-600 text-center py-3 rounded-lg font-bold text-white block mt-2">संपर्क साधा</a>
-        </div>
-    </nav>
-
-    <!-- ================= BRAND PAGE (Home) ================= -->
-    <div id="brand-page" class="fade-in pt-24">
-
-        <!-- Hero Section -->
-        <header class="relative h-[85vh] flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1571557022028-c16766432b2f?q=80&w=2070&auto=format&fit=crop" alt="Tea Background" class="w-full h-full object-cover opacity-40 scale-105 img-hover-zoom">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                <div class="steam-container">
-                    <div class="steam-one"></div>
-                    <div class="steam-two"></div>
+    <section class="section" id="about">
+        <div class="section-title">आमचा प्रवास</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>एका छोट्या हातगाडीपासून ते यशस्वी ब्रँडपर्यंत!</h3>
+                <p>आमची पहिली शाखा २०१६ मध्ये वाघोली येथे सुरू झाली.ग्राहकांच्या भरभरून मिळणाऱ्या प्रतिसादामुळे आज 'दिलखुलास चहा' हा महाराष्ट्रातील एक लाडका ब्रँड बनला आहे.</p>
+                <div class="stats">
+                    <div class="stat-box"><strong>2016</strong>पासून सेवेत</div>
+                    <div class="stat-box"><strong>100%</strong>ऑरिजीनल चव [cite: 3]</div>
+                    <div class="stat-box"><strong>अनेक</strong>समाधानी ग्राहक</div>
                 </div>
             </div>
-
-            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                <div class="inline-block px-4 py-1 border border-orange-500 rounded-full text-orange-400 text-sm mb-4 uppercase tracking-widest bg-black/50 backdrop-blur-sm shadow-lg">
-                    Since 2016 • Wagholi
-                </div>
-                <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
-                    एक घोट... <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 notranslate" translate="no">Dilkhulas Chaha</span>
-                </h2>
-                <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-                    हाथगाडी पासून सुरू झालेला प्रवास आज महाराष्ट्रातील लाखो ग्राहकांच्या पसंतीचा ब्रँड बनला आहे.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="switchTab('franchise')" class="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 btn-press shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-                        फ्रँचायजी सुरू करा <i class="fas fa-chevron-right text-orange-600"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Stats Section -->
-        <section class="py-12 bg-zinc-900 border-y border-zinc-800 card-border">
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="p-4 hover:-translate-y-1 transition-transform">
-                    <h3 class="text-3xl font-bold text-zinc-500 mb-2">10+</h3>
-                    <p class="text-gray-400 text-sm uppercase tracking-wider">शाखा</p>
-                </div>
-                <div class="p-4 hover:-translate-y-1 transition-transform">
-                    <h3 class="text-4xl font-bold text-orange-500 mb-2">10L+</h3>
-                    <p class="text-gray-400 text-sm uppercase tracking-wider">ग्राहक</p>
-                </div>
-                <div class="p-4 hover:-translate-y-1 transition-transform">
-                    <h3 class="text-4xl font-bold text-orange-500 mb-2">2016</h3>
-                    <p class="text-gray-400 text-sm uppercase tracking-wider">पासून सेवेत</p>
-                </div>
-                <div class="p-4 hover:-translate-y-1 transition-transform">
-                    <h3 class="text-4xl font-bold text-orange-500 mb-2">100%</h3>
-                    <p class="text-gray-400 text-sm uppercase tracking-wider">शुद्धता</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Our Story -->
-        <section class="py-20 px-4 max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="relative group img-hover-zoom rounded-2xl">
-                    <div class="absolute -inset-2 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-                    <img src="https://images.unsplash.com/photo-1626139556209-668eb781615a?q=80&w=1470&auto=format&fit=crop" alt="Making Tea" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
-                </div>
-                <div>
-                    <h3 class="text-orange-500 font-bold uppercase tracking-widest mb-2">आमची गोष्ट</h3>
-                    <h2 class="text-4xl font-bold mb-6">वाघोली ते संपूर्ण महाराष्ट्र...</h2>
-                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
-                        आमची प्रथम शाखा वर्षे 2016 मध्ये वाघोली येथे सुरु झाली. एका छोट्याशा हातगाडी पासून चालू केलेल्या व्यवसायाचे रूपांतर एका यशस्वी शाखेमध्ये करण्यात आम्ही यशस्वी झालो.
-                    </p>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 group">
-                            <div class="bg-zinc-800 p-3 rounded-full h-fit group-hover:bg-orange-600 transition-colors"><i class="fas fa-star text-orange-500 group-hover:text-white text-xl"></i></div>
-                            <div>
-                                <h4 class="text-xl font-bold">अद्वितीय चव</h4>
-                                <p class="text-gray-400 text-sm">प्रत्येक घोटांत खास स्वाद आणि अस्सल कडकपणा.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 group">
-                            <div class="bg-zinc-800 p-3 rounded-full h-fit group-hover:bg-orange-600 transition-colors"><i class="fas fa-award text-orange-500 group-hover:text-white text-xl"></i></div>
-                            <div>
-                                <h4 class="text-xl font-bold">आरोग्यदायी</h4>
-                                <p class="text-gray-400 text-sm">आम्ही चहा तयार करण्यापूर्वी दूध थंड करतो जेणेकरून ॲसिडिटी होत नाही.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- INSTAGRAM REELS (PLAYABLE EMBEDS) -->
-        <section class="py-20 bg-black">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4"><i class="fab fa-instagram text-pink-600 mr-2"></i> आमचे <span class="text-orange-500">Reels</span></h2>
-                    <p class="text-gray-400">Instagram वर आम्हाला फॉलो करा</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                    <!-- REEL 1: DP88iwhkjgu -->
-                    <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 card-border shadow-lg">
-                        <div class="aspect-[9/16]">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.instagram.com/reel/DP88iwhkjgu/embed/"
-                                frameborder="0" scrolling="no" allowtransparency="true">
-                            </iframe>
-                        </div>
-                        <div class="p-3 text-center bg-black/50">
-                            <p class="text-orange-500 font-bold text-sm notranslate" translate="no"><i class="fab fa-instagram mr-2"></i>@dilkhulas_chaha</p>
-                        </div>
-                    </div>
-
-                    <!-- REEL 2: DQwgVUcjGM3 -->
-                    <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 card-border shadow-lg">
-                        <div class="aspect-[9/16]">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.instagram.com/reel/DQwgVUcjGM3/embed/"
-                                frameborder="0" scrolling="no" allowtransparency="true">
-                            </iframe>
-                        </div>
-                        <div class="p-3 text-center bg-black/50">
-                            <p class="text-orange-500 font-bold text-sm notranslate" translate="no"><i class="fab fa-instagram mr-2"></i>@dilkhulas_chaha</p>
-                        </div>
-                    </div>
-
-                    <!-- REEL 3: DPwNCDzjGE6 -->
-                    <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 card-border shadow-lg">
-                        <div class="aspect-[9/16]">
-                            <iframe
-                                class="w-full h-full"
-                                src="https://www.instagram.com/reel/DPwNCDzjGE6/embed/"
-                                frameborder="0" scrolling="no" allowtransparency="true">
-                            </iframe>
-                        </div>
-                        <div class="p-3 text-center bg-black/50">
-                            <p class="text-orange-500 font-bold text-sm notranslate" translate="no"><i class="fab fa-instagram mr-2"></i>@dilkhulas_chaha</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="text-center mt-8">
-                     <a href="https://instagram.com/DILKHULAS555" target="_blank" class="inline-block border border-zinc-700 hover:bg-zinc-800 text-gray-300 px-6 py-2 rounded-full transition btn-press">
-                        View Profile on Instagram
-                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Product Gallery -->
-        <section class="py-20 bg-zinc-900/50">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 class="text-center text-4xl font-bold mb-16">आमची <span class="text-orange-500">लोकप्रिय उत्पादने</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-black border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group card-border">
-                        <div class="h-64 overflow-hidden relative img-hover-zoom">
-                            <img src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8" alt="Masala Chai" class="w-full h-full object-cover">
-                            <h3 class="absolute bottom-4 left-4 text-2xl font-bold z-10 notranslate" translate="no">Masala Chai</h3>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-400 text-sm">आमचा सिग्नेचर चहा. खास मसाल्यांचा वापर करून बनवलेला.</p>
-                        </div>
-                    </div>
-                    <div class="bg-black border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group card-border">
-                        <div class="h-64 overflow-hidden relative img-hover-zoom">
-                            <img src="https://images.unsplash.com/photo-1621262923737-2ff112d7c00e" alt="Coffee" class="w-full h-full object-cover">
-                            <h3 class="absolute bottom-4 left-4 text-2xl font-bold z-10">हॉट कॉफी</h3>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-400 text-sm">ताज्या कॉफी बीन्स पासून बनवलेली कडक कॉफी.</p>
-                        </div>
-                    </div>
-                    <div class="bg-black border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 group card-border">
-                        <div class="h-64 overflow-hidden relative img-hover-zoom">
-                            <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94" alt="Snacks" class="w-full h-full object-cover">
-                            <h3 class="absolute bottom-4 left-4 text-2xl font-bold z-10">नाष्टा & स्नॅक्स</h3>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-400 text-sm">दही पोहा, सांबर पोहा, मसाला राईस आणि बरेच काही.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ================= FRANCHISE PAGE ================= -->
-    <div id="franchise-page" class="hidden fade-in pt-32">
-        <div class="bg-gradient-to-b from-zinc-900 to-black py-20 px-4 text-center border-b border-zinc-800 card-border">
-             <div class="inline-block p-4 rounded-full bg-orange-600/20 mb-6 animate-bounce">
-               <i class="fas fa-hand-holding-dollar text-4xl text-orange-500"></i>
-             </div>
-             <h1 class="text-4xl md:text-6xl font-bold mb-6">स्वतःचा <span class="text-orange-500">व्यवसाय</span> सुरू करा</h1>
-             <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-               कमी गुंतवणूक, जास्त नफा आणि 0% रॉयल्टी मॉडेल. <br> आजच '<span class="notranslate text-orange-400" translate="no">Dilkhulas Chaha</span>' परिवारात सामील व्हा.
-             </p>
-        </div>
-
-        <section class="py-16 px-4 max-w-5xl mx-auto">
-             <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden card-border hover:shadow-orange-900/20 transition-all duration-500">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-orange-600/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                <div class="text-center mb-12">
-                  <h2 class="text-3xl font-bold mb-2 text-2xl">गुंतवणूक आणि नफा</h2>
-                  <p class="text-orange-500 font-semibold text-lg mt-2">Investment: ₹ 1.80 - 2.30 Lakhs</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12">
-                  <div class="space-y-6">
-                    <h3 class="text-xl font-bold border-b border-zinc-700 pb-2">आर्थिक गणित (Breakdown)</h3>
-                    <ul class="space-y-4">
-                      <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <div><span class="block font-bold">साहित्य खर्च</span><span class="text-gray-400 text-sm">₹50,000 - ₹70,000 (भट्टी, काउंटर, थर्मास इ.)</span></div>
-                      </li>
-                      <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <div><span class="block font-bold">इंटिरिअर & ब्रँडिंग</span><span class="text-gray-400 text-sm">₹50,000 - ₹60,000 (होल्डिंग व सुशोभीकरण)</span></div>
-                      </li>
-                      <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <div><span class="block font-bold">आवश्यक जागा</span><span class="text-gray-400 text-sm">150 ते 300 चौरस मीटर</span></div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="bg-black/50 p-6 rounded-xl border border-zinc-700 card-border">
-                    <h3 class="text-xl font-bold mb-6 text-center text-orange-400">विशेष फायदे</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                       <div class="bg-zinc-800 p-4 rounded-lg text-center hover:bg-zinc-700 transition"><p class="text-3xl font-bold text-white mb-1">0%</p><p class="text-xs text-gray-400 uppercase">रॉयल्टी</p></div>
-                       <div class="bg-zinc-800 p-4 rounded-lg text-center hover:bg-zinc-700 transition"><p class="text-3xl font-bold text-white mb-1">Free</p><p class="text-xs text-gray-400 uppercase">ट्रेनिंग</p></div>
-                       <div class="bg-zinc-800 p-4 rounded-lg text-center col-span-2 hover:bg-zinc-700 transition"><p class="text-lg font-bold text-white mb-1">Full Support</p><p class="text-xs text-gray-400">डिजिटल मार्केटिंग & मार्गदर्शन</p></div>
-                    </div>
-                  </div>
-                </div>
-             </div>
-        </section>
-    </div>
-
-    <!-- ================= CONTACT (Common) ================= -->
-    <section id="contact" class="py-20 bg-black relative">
-        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-4xl font-bold mb-4">संपर्क साधा</h2>
-            <p class="text-gray-400 mb-12">नवीन व्यवसायासाठी आजच आम्हाला कॉल करा किंवा भेट द्या.</p>
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <a href="tel:7350912555" class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 hover:border-orange-500 transition-all group cursor-pointer block no-underline card-border btn-press">
-                    <i class="fas fa-phone-alt text-4xl text-orange-500 mb-4 block group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-orange-500 transition-colors">Call Us</h3>
-                    <p class="text-gray-400 group-hover:text-white transition-colors">7350912555 / 8788072747</p>
-                    <p class="text-sm text-zinc-500 mt-2">बालाजी अर्जुन ठोंबरे</p>
-                </a>
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 hover:border-orange-500 transition-all group card-border">
-                    <i class="fas fa-map-marker-alt text-4xl text-orange-500 mb-4 block group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-orange-500 transition-colors">Email Us</h3>
-                    <p class="text-gray-400 group-hover:text-white transition-colors">balajithombare1994@gmail.com</p>
-                    <p class="text-sm text-zinc-500 mt-2">पुणे, महाराष्ट्र</p>
-                </div>
-            </div>
-            <div class="inline-flex flex-col items-center gap-4 bg-zinc-900/50 p-6 rounded-xl border border-zinc-800 card-border">
-                <div class="flex gap-4">
-                    <a href="#" class="p-3 bg-zinc-800 rounded-full hover:bg-pink-600 transition-colors text-white btn-press"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="p-3 bg-zinc-800 rounded-full hover:bg-blue-600 transition-colors text-white btn-press"><i class="fab fa-facebook text-xl"></i></a>
-                </div>
-                <p class="text-sm font-bold tracking-widest text-orange-500 notranslate" translate="no">@DILKHULAS555</p>
+            <div class="about-img">
+                <img src="group-2.jpg" alt="Dilkhulas Team">
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-zinc-950 py-8 text-center text-zinc-600 text-sm border-t border-zinc-900 card-border">
-        <p>© 2025 <span class="notranslate" translate="no">Dilkhulas Chaha</span>. All Rights Reserved.</p>
+    <section class="section" id="menu">
+        <div class="section-title">आमचा मेनू</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="tea-glass.jpg" alt="Tea">
+                <div class="menu-info">
+                    <h3>स्पेशल चहा</h3>
+                    <p>अस्सल कडकपणा आणि खास स्वाद. [cite_start]दूध थंड करून बनवलेला चहा, ज्यामुळे ॲसिडिटी होत नाही.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="bun-maska.jpg" alt="Bun Maska">
+                <div class="menu-info">
+                    <h3>बन मस्का</h3>
+                    <p>चहासोबत खाण्यासाठी खास बन मस्का.</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <img src="hero-bg.jpg" alt="Snacks" style="object-position: top;">
+                <div class="menu-info">
+                    <h3>नाष्टा आणि बरेच काही</h3>
+                    <p>दही पोहा, सांबर पोहा, मसाला राईस, कॉफी, लेमन टी, मसाला दूध.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section franchise-section" id="franchise">
+        <div class="section-title" style="color: #fff;">फ्रँचायझी का निवडावी?</div>
+        <p style="font-size: 1.2rem;">दर्जेदार चव - कमी गुंतवणूक - जास्त नफा</p>
+
+        <div class="usp-grid">
+            <div class="usp-item">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h4>0% रॉयल्टी</h4>
+                <p>आमच्या मार्फत कुठल्याही प्रकारची रॉयल्टी घेतली जात नाही.</p>
+            </div>
+            <div class="usp-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h4>मोफत ट्रेनिंग</h4>
+                <p>मुख्य शाखेमध्ये चहा बनवण्याची संपूर्ण ट्रेनिंग मोफत दिली जाईल.</p>
+            </div>
+            <div class="usp-item">
+                <i class="fas fa-chart-line"></i>
+                <h4>संपूर्ण मार्गदर्शन</h4>
+                <p>शाखा उभारणीपासून ते डिजिटल मार्केटिंगपर्यंत संपूर्ण मदत.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="section-title">संपर्क साधा</div>
+        <div class="contact-box">
+            <div class="about-img" style="max-width: 300px; margin: 0 auto 20px;">
+                <img src="owner.jpg" alt="Balaji Thombare" style="border-radius: 50%;">
+            </div>
+            <h3>बालाजी अर्जुन ठोंबरे</h3>
+            <p><i class="fas fa-phone-alt"></i> 7350912555 / +918999152467</p>
+            <p><i class="fas fa-envelope"></i> balajithombare1994@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> मुख्य शाखा: वाघोली, पुणे</p>
+
+            <a href="https://wa.me/917350912555" class="contact-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp वर चॅट करा
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Dilkhulas Chaha. All Rights Reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader-wrapper');
-            setTimeout(() => { loader.style.opacity = '0'; setTimeout(() => { loader.style.display = 'none'; }, 500); }, 2500);
-            const savedTheme = localStorage.getItem('theme');
-            if(savedTheme === 'light') { enableLightMode(); }
-        });
-
-        function resetToHome(event) {
-            event.preventDefault();
-            switchTab('brand');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(() => location.reload(), 1000);
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
-
-        function toggleTheme() {
-            const body = document.body;
-            if (body.classList.contains('light-mode')) { disableLightMode(); } else { enableLightMode(); }
-        }
-
-        function enableLightMode() {
-            document.body.classList.add('light-mode');
-            document.getElementById('theme-icon').classList.remove('fa-sun', 'text-yellow-400');
-            document.getElementById('theme-icon').classList.add('fa-moon', 'text-zinc-800');
-            document.getElementById('theme-icon-mobile').classList.remove('fa-sun', 'text-yellow-400');
-            document.getElementById('theme-icon-mobile').classList.add('fa-moon', 'text-zinc-800');
-            document.getElementById('nav-logo').src = 'logo-black.png';
-            localStorage.setItem('theme', 'light');
-        }
-
-        function disableLightMode() {
-            document.body.classList.remove('light-mode');
-            document.getElementById('theme-icon').classList.add('fa-sun', 'text-yellow-400');
-            document.getElementById('theme-icon').classList.remove('fa-moon', 'text-zinc-800');
-            document.getElementById('theme-icon-mobile').classList.add('fa-sun', 'text-yellow-400');
-            document.getElementById('theme-icon-mobile').classList.remove('fa-moon', 'text-zinc-800');
-            document.getElementById('nav-logo').src = 'Logo.png';
-            localStorage.setItem('theme', 'dark');
-        }
-
-        const brandPage = document.getElementById('brand-page');
-        const franchisePage = document.getElementById('franchise-page');
-        const btnBrand = document.getElementById('btn-brand');
-        const btnFranchise = document.getElementById('btn-franchise');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navbar = document.getElementById('navbar');
-
-        function switchTab(tab) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (tab === 'brand') {
-                brandPage.classList.remove('hidden'); franchisePage.classList.add('hidden');
-                btnBrand.classList.add('text-orange-500', 'border-b-2', 'border-orange-500'); btnBrand.classList.remove('text-gray-300');
-                btnFranchise.classList.remove('text-orange-500', 'border-b-2', 'border-orange-500'); btnFranchise.classList.add('text-gray-300');
-            } else {
-                brandPage.classList.add('hidden'); franchisePage.classList.remove('hidden');
-                btnFranchise.classList.add('text-orange-500', 'border-b-2', 'border-orange-500'); btnFranchise.classList.remove('text-gray-300');
-                btnBrand.classList.remove('text-orange-500', 'border-b-2', 'border-orange-500'); btnBrand.classList.add('text-gray-300');
-            }
-        }
-
-        function toggleMobileMenu() { mobileMenu.classList.toggle('hidden'); mobileMenu.classList.toggle('flex'); }
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { navbar.classList.add('shadow-lg'); } else { navbar.classList.remove('shadow-lg'); }
-        });
     </script>
 </body>
 </html>
