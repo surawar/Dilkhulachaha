@@ -16,6 +16,7 @@
             --light-bg: #fffdf5;
             --text-color: #333;
             --gradient: linear-gradient(135deg, var(--brand-red), var(--brand-orange));
+            --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         /* --- GLOBAL RESET --- */
@@ -51,12 +52,14 @@
         .nav-links a { font-weight: 700; font-size: 1.1rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand-red); }
 
+        /* Instagram Menu Icon */
+        .insta-link { color: #bc1888 !important; }
+
         .mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--brand-red); }
 
         /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
-            /* Updated to use your 'hero-bg.jpg' */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('hero-bg.jpg');
             background-size: cover;
             background-position: center;
@@ -120,6 +123,38 @@
         .menu-info h3 { font-size: 1.4rem; color: var(--brand-red); margin-bottom: 10px; }
         .menu-info p { font-size: 1rem; color: #666; }
 
+        /* --- REELS SECTION --- */
+        .reels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        /* Container for pasted code */
+        .reel-container {
+            width: 350px;
+            min-height: 500px;
+            background: #fff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* Force Instagram Embeds to fit */
+        .instagram-media {
+            min-width: 100% !important;
+            margin: 0 !important;
+        }
+
+        .reel-btn {
+            display: table; margin: 30px auto 0;
+            background: var(--instagram-gradient);
+            color: #fff; padding: 10px 30px; border-radius: 50px;
+            font-weight: bold; text-align: center;
+        }
+
         /* --- FRANCHISE (USP) --- */
         .franchise-section { background: var(--brand-dark); color: #fff; text-align: center; }
         .usp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
@@ -135,10 +170,14 @@
         .contact-btn {
             display: inline-block; background: #25d366; color: #fff;
             padding: 10px 25px; border-radius: 50px; margin-top: 15px; font-weight: bold;
+            margin-right: 10px;
         }
+        .insta-btn { background: var(--instagram-gradient); }
 
         /* --- FOOTER --- */
         footer { background: #111; color: #aaa; text-align: center; padding: 20px; margin-top: 50px; }
+        .social-icons a { color: #fff; font-size: 1.5rem; margin: 0 10px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--brand-orange); }
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -153,6 +192,8 @@
             .hero h1 { font-size: 2.5rem; }
             .about-grid { grid-template-columns: 1fr; }
             .stats { flex-wrap: wrap; }
+            .reels-grid { flex-direction: column; align-items: center; }
+            .reel-container { width: 100%; max-width: 350px; }
         }
     </style>
 </head>
@@ -161,7 +202,7 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="#"><img src="logo.png" alt="Dilkhulas Chaha Logo"></a>
+                <a href="#"><img src="Logo.png" alt="Dilkhulas Chaha Logo"></a>
             </div>
             <div class="mobile-menu-btn" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
@@ -170,6 +211,7 @@
                 <li><a href="#home">मुख्य पृष्ठ</a></li>
                 <li><a href="#about">आमच्याबद्दल</a></li>
                 <li><a href="#menu">मेनू</a></li>
+                <li><a href="#reels"></i> रील्स</a></li>
                 <li><a href="#franchise">फ्रँचायझी</a></li>
                 <li><a href="#contact">संपर्क</a></li>
             </ul>
@@ -189,14 +231,15 @@
         <div class="about-grid">
             <div class="about-text">
                 <h3>एका छोट्या हातगाडीपासून ते यशस्वी ब्रँडपर्यंत!</h3>
-                <p>आमची पहिली शाखा २०१६ मध्ये वाघोली येथे सुरू झाली.ग्राहकांच्या भरभरून मिळणाऱ्या प्रतिसादामुळे आज 'दिलखुलास चहा' हा महाराष्ट्रातील एक लाडका ब्रँड बनला आहे.</p>
+                <p>आमची पहिली शाखा २०१६ मध्ये वाघोली येथे सुरू झाली. ग्राहकांच्या भरभरून मिळणाऱ्या प्रतिसादामुळे आज 'दिलखुलास चहा' हा महाराष्ट्रातील एक लाडका ब्रँड बनला आहे.</p>
                 <div class="stats">
                     <div class="stat-box"><strong>2016</strong>पासून सेवेत</div>
-                    <div class="stat-box"><strong>100%</strong>ऑरिजीनल चव [cite: 3]</div>
+                    <div class="stat-box"><strong>100%</strong>ऑरिजीनल चव</div>
                     <div class="stat-box"><strong>अनेक</strong>समाधानी ग्राहक</div>
                 </div>
             </div>
             <div class="about-img">
+                <img src="group-0.jpg" alt="Dilkhulas Team">
                 <img src="group-2.jpg" alt="Dilkhulas Team">
             </div>
         </div>
@@ -209,7 +252,7 @@
                 <img src="tea-glass.jpg" alt="Tea">
                 <div class="menu-info">
                     <h3>स्पेशल चहा</h3>
-                    <p>अस्सल कडकपणा आणि खास स्वाद. [cite_start]दूध थंड करून बनवलेला चहा, ज्यामुळे ॲसिडिटी होत नाही.</p>
+                    <p>अस्सल कडकपणा आणि खास स्वाद. दूध थंड करून बनवलेला चहा, ज्यामुळे ॲसिडिटी होत नाही.</p>
                 </div>
             </div>
             <div class="menu-card">
@@ -227,6 +270,30 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="section" id="reels">
+        <div class="section-title">आमचे रील्स <i class="fab fa-instagram" style="color: #bc1888;"></i></div>
+
+        <div class="reels-grid">
+
+            <div class="reel-container">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DP88iwhkjgu/" data-instgrm-version="14"></blockquote>
+            </div>
+
+            <div class="reel-container">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DPlsJ6hDGz6/" data-instgrm-version="14"></blockquote>
+            </div>
+
+            <div class="reel-container">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DL64W4EoWif/" data-instgrm-version="14"></blockquote>
+            </div>
+
+        </div>
+
+        <a href="https://www.instagram.com/" target="_blank" class="reel-btn">
+            <i class="fab fa-instagram"></i> इंस्टाग्रामवर फॉलो करा
+        </a>
     </section>
 
     <section class="section franchise-section" id="franchise">
@@ -259,19 +326,26 @@
                 <img src="owner.jpg" alt="Balaji Thombare" style="border-radius: 50%;">
             </div>
             <h3>बालाजी अर्जुन ठोंबरे</h3>
-            <p><i class="fas fa-phone-alt"></i> 7350912555 / +918999152467</p>
+            <p><i class="fas fa-phone-alt"></i> 7350912555 / 8788072747</p>
             <p><i class="fas fa-envelope"></i> balajithombare1994@gmail.com</p>
             <p><i class="fas fa-map-marker-alt"></i> मुख्य शाखा: वाघोली, पुणे</p>
 
-            <a href="https://wa.me/917350912555" class="contact-btn">
-                <i class="fab fa-whatsapp"></i> WhatsApp वर चॅट करा
-            </a>
+            <div style="margin-top: 20px;">
+                <a href="https://wa.me/917350912555" class="contact-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.instagram.com/" class="contact-btn insta-btn">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2025 Dilkhulas Chaha. All Rights Reserved.</p>
     </footer>
+
+    <script async src="//www.instagram.com/embed.js"></script>
 
     <script>
         function toggleMenu() {
